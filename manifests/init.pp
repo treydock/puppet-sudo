@@ -93,6 +93,16 @@
 #     Array of additional command to discard in sudo log.
 #     Default: undef
 #
+#   [*disable_wheel*]
+#     Boolean to disable usually enabled setting to enable people in
+#     group wheel to run all commands
+#     Default: false
+#
+#   [*disable_wheel_nopasswd*]
+#     Boolean to disable the usually disable setting that does the
+#     same thing without a password
+#     Default: true
+#
 #   [*configs*]
 #     A hash of sudo::conf's
 #     Default: {}
@@ -131,6 +141,8 @@ class sudo (
   Boolean                                   $config_dir_keepme   = $sudo::params::config_dir_keepme,
   Boolean                                   $use_sudoreplay      = false,
   Optional[Array[String]]                   $sudoreplay_discard  = undef,
+  Boolean                                   $disable_wheel          = $sudo::params::disable_wheel,
+  Boolean                                   $disable_wheel_nopasswd = $sudo::params::disable_wheel_nopasswd,
   Hash                                      $configs             = {},
 ) inherits sudo::params {
   case $enable {
